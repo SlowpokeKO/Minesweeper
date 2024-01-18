@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://l8sndxm4jah2"]
+
+[ext_resource type="Texture2D" uid="uid://b6fiefp7ds81d" path="res://minesweeperTileset.png" id="1_j5aaq"]
+[ext_resource type="Script" path="res://TileMap.gd" id="2_shjcj"]
+[ext_resource type="Texture2D" uid="uid://bf4leihekqfuy" path="res://hover_dark.png" id="2_tnrx6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pl5m7"]
+texture = ExtResource("1_j5aaq")
+texture_region_size = Vector2i(50, 50)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+7:0/next_alternative_id = 2
+7:0/0 = 0
+7:0/1 = 1
+
+[sub_resource type="Gradient" id="Gradient_o6gf6"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.0784314)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2fu7k"]
+gradient = SubResource("Gradient_o6gf6")
+fill_from = Vector2(0.8, 0)
+fill_to = Vector2(1, 0.381818)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f24kr"]
+texture = SubResource("GradientTexture2D_2fu7k")
+texture_region_size = Vector2i(50, 50)
+use_texture_padding = false
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/1 = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5g278"]
+texture = ExtResource("2_tnrx6")
+texture_region_size = Vector2i(50, 50)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ja2nl"]
+tile_size = Vector2i(50, 50)
+sources/0 = SubResource("TileSetAtlasSource_pl5m7")
+sources/1 = SubResource("TileSetAtlasSource_f24kr")
+sources/2 = SubResource("TileSetAtlasSource_5g278")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_ja2nl")
+format = 2
+layer_0/name = "Mines"
+layer_1/name = "Numbers"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Grass"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Flags"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Hover"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+script = ExtResource("2_shjcj")

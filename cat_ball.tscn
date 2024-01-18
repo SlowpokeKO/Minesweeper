@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2h0klsdqau3g"]
+
+[ext_resource type="Script" path="res://cat_ball.gd" id="1_jltp4"]
+[ext_resource type="Texture2D" uid="uid://bux0ewpnwapnl" path="res://catface.png" id="2_x6gli"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qub4i"]
+friction = 0.0
+bounce = 1.05
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxwkh"]
+size = Vector2(28, 28)
+
+[node name="cat_ball" type="RigidBody2D"]
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_qub4i")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+linear_damp_mode = 1
+script = ExtResource("1_jltp4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_x6gli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wxwkh")

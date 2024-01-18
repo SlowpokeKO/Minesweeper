@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://di8guy65rip6s"]
+
+[ext_resource type="Texture2D" uid="uid://cxirlb7h8slbn" path="res://5741911.png" id="1_1mhoy"]
+[ext_resource type="Texture2D" uid="uid://bgyklqhn2ae3p" path="res://kisspng-hourglass-pixel-art-hourglass-5afcace70d1611.0087206015265087750536.png" id="2_4emb7"]
+[ext_resource type="Texture2D" uid="uid://bux0ewpnwapnl" path="res://catface.png" id="3_x34yn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up4e7"]
+bg_color = Color(0, 0.462745, 0.12549, 1)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = 700.0
+offset_right = 750.0
+offset_bottom = 750.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_up4e7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(108, 724)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_1mhoy")
+
+[node name="RemainingMinesLabel" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 704.0
+offset_right = 176.0
+offset_bottom = 749.0
+theme_override_font_sizes/font_size = 25
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(592, 728)
+scale = Vector2(0.0436875, 0.0467667)
+texture = ExtResource("2_4emb7")
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 704.0
+offset_right = 696.0
+offset_bottom = 750.0
+theme_override_font_sizes/font_size = 25
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(376, 726)
+scale = Vector2(3, 3)
+texture = ExtResource("3_x34yn")

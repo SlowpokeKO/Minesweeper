@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbavclhrt4aid"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_bvexg"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvexg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 96.0
+offset_right = 421.0
+offset_bottom = 122.0
+text = "Number of cat faces: "
+
+[node name="CatFaceNumTextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 90.0
+offset_right = 492.0
+offset_bottom = 127.0
+
+[node name="ApplyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 208.0
+offset_right = 432.0
+offset_bottom = 240.0
+text = "Apply & Back"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 432.0
+offset_bottom = 288.0
+text = "Back"
+
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

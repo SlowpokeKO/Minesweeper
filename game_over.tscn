@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6bk4qhoecdvc"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_3stj2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rirlm"]
+bg_color = Color(0.443137, 0.67451, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ueodr"]
+bg_color = Color(0, 0.52549, 0.741176, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_3stj2")
+
+[node name="TryAgainButton" type="Button" parent="."]
+process_mode = 2
+offset_left = 275.0
+offset_top = 500.0
+offset_right = 475.0
+offset_bottom = 550.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rirlm")
+text = "Try Again?"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 250.0
+offset_top = 325.0
+offset_right = 500.0
+offset_bottom = 405.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ueodr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 256.0
+offset_top = 336.0
+offset_right = 496.0
+offset_bottom = 402.0
+theme_override_font_sizes/font_size = 40
+text = "YOU WIN!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]

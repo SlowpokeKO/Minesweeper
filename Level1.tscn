@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpc3v1cfnqy2a"]
+
+[ext_resource type="Script" path="res://Level1.gd" id="1_a8g5o"]
+[ext_resource type="PackedScene" uid="uid://l8sndxm4jah2" path="res://tile_map.tscn" id="1_id812"]
+[ext_resource type="PackedScene" uid="uid://di8guy65rip6s" path="res://HUD.tscn" id="2_8njcm"]
+[ext_resource type="Texture2D" uid="uid://cqdp3op8xt58x" path="res://ai_treehouse1.jpg" id="3_0x8b4"]
+[ext_resource type="PackedScene" uid="uid://b6bk4qhoecdvc" path="res://game_over.tscn" id="5_vjg6a"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_a8g5o")
+
+[node name="TileMap" parent="." instance=ExtResource("1_id812")]
+
+[node name="HUD" parent="." instance=ExtResource("2_8njcm")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(375, 352)
+scale = Vector2(1.46484, 0.916667)
+texture = ExtResource("3_0x8b4")
+
+[node name="GameOver" parent="." instance=ExtResource("5_vjg6a")]
+visible = false
+
+[connection signal="lostGame" from="TileMap" to="." method="_on_tile_map_lost_game"]
+[connection signal="wonGame" from="TileMap" to="." method="_on_tile_map_won_game"]
+[connection signal="tryAgain" from="GameOver" to="." method="_on_game_over_try_again"]
+[connection signal="tryAgain" from="GameOver" to="TileMap" method="_on_game_over_try_again"]
