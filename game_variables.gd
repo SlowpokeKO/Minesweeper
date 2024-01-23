@@ -1,6 +1,6 @@
 extends Node
 
-var mines : int = 20
+var mines : int = 5
 var time_elapsed : float
 var remaining_mines : int
 var winning : bool = true

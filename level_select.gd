@@ -48,7 +48,6 @@ func _on_play_button_mouse_exited():
 
 
 func _on_play_button_pressed():
-	print(selected_level.name)
 	# ?do something if fails?
 	get_tree().change_scene_to_file("res://" +selected_level.name+ ".tscn")
 
@@ -69,7 +68,6 @@ func change_level(direction):
 		$RightButton.disabled = true
 	else:
 		$RightButton.disabled = false
-	
 	if levels.find(selected_level) == 0:
 		$LeftButton.disabled = true
 	else:

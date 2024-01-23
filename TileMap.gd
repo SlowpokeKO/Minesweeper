@@ -30,6 +30,8 @@ var mine_coords := []
 
 var tiles_left : int
 
+var end_screen = false
+
 func generate_number_atlas():
 	var a := []
 	for i in range(8):
@@ -48,6 +50,11 @@ func new_game():
 	generate_numbers()
 	generate_grass()
 	tiles_left = ROWS * COLS - GameVariables.mines
+	set_layer_modulate(numbers_layer, Color(1, 1, 1, 1))
+	set_layer_modulate(grass_layer, Color(1, 1, 1, 1))
+	end_screen = false
+	once = 1
+	
 
 func generate_mines():
 	for i in range(GameVariables.mines):
@@ -85,6 +92,8 @@ func get_empty_cells():
 				empty_cells.append(Vector2i(x, y))
 	return empty_cells
 
+
+
 func get_all_surrounding_cells(middle_cell):
 	var surrounding_cells := []
 	var target_cell
@@ -109,6 +118,7 @@ func _input(event):
 					#check if it is a mine
 					if is_mine(map_pos):
 						lostGame.emit()
+						end_screen = true
 					
 					process_left_click(map_pos)
 			
@@ -133,11 +143,46 @@ func process_left_click(pos):
 			#remove processed cell from array
 			cells_to_reveal.erase(cells_to_reveal[0])
 			tiles_left -= 1
-			print(tiles_left)
 			if tiles_left <= 0:
 				wonGame.emit()
+				
+				#put on show after winning
+				end_screen = true
+				while get_layer_modulate(numbers_layer).a > 0:
+					set_layer_modulate(numbers_layer, Color(1, 1, 1, get_layer_modulate(numbers_layer).a - 0.05))
+					set_layer_modulate(grass_layer, Color(1, 1, 1, get_layer_modulate(grass_layer).a - 0.05))
+					await get_tree().create_timer(.1).timeout
+				#then
+				if get_layer_modulate(numbers_layer).a <= 0:
+					var mines : Array[Vector2i] = get_used_cells(mine_layer)
+					print(mines)
+					#mines.y.sort_custom(func(b, a): return a[0] > b[0])
+					#y_sort_enabled = true
+					
+					mines.sort_custom(sort_height)
+					print(mines)
+					for i in mines:
+						
+						#mines[i]
+						
+						var falling_mine = preload("res://falling_mine.tscn").instantiate()
+						falling_mine.position = i * 50 + Vector2i(25, 25)
+						add_child(falling_mine)
+						erase_cell(mine_layer, i)
+						await get_tree().create_timer(.5).timeout
 		else:
 			break
+
+func sort_height(a, b):
+	if a.y < b.y:
+		return true
+	return false
+
+#func sort_height(a, b):
+#	if a[0] < b[0]:
+#		return true
+#	return false
+
 
 func process_right_click(pos):
 	#check if it is a grass cell
@@ -158,9 +203,15 @@ func reveal_surrounding_cells(cells_to_reveal, revealed_cells):
 					cells_to_reveal.append(i)
 	return cells_to_reveal
 
+var once = 1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	highlight_cell()
+	if not end_screen:
+		highlight_cell()
+	else:
+		if once:
+			clear_layer(hover_layer)
+			once -= 1
 
 func highlight_cell():
 	var mouse_pos := local_to_map(get_local_mouse_position())
@@ -173,6 +224,8 @@ func highlight_cell():
 		#if cell is cleared only hover over numbered cells
 		if is_number(mouse_pos):
 			set_cell(hover_layer, mouse_pos, tiles2_id, dark_hover_atlas)
+	if end_screen:
+		clear_layer(hover_layer)
 
 func is_grass(pos):
 	#looks in grass layer and return if something is there or not

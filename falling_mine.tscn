@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c440lyovu72cx"]
+
+[ext_resource type="Script" path="res://falling_mine.gd" id="1_2afro"]
+[ext_resource type="Texture2D" uid="uid://xq4ruw286o58" path="res://mine.png" id="1_4s3ax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6pfj"]
+
+[node name="falling_mine" type="RigidBody2D"]
+script = ExtResource("1_2afro")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4s3ax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x6pfj")

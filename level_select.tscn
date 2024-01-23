@@ -25,6 +25,7 @@ offset_bottom = 40.0
 anchors_preset = 0
 
 [node name="Label" type="Label" parent="Levels/Level1"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 160.0
 offset_right = 536.0
@@ -39,6 +40,7 @@ visible = false
 anchors_preset = 0
 
 [node name="Label" type="Label" parent="Levels/Level2"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 160.0
 offset_right = 536.0
@@ -82,6 +84,7 @@ text = "
 <"
 
 [node name="RightButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 570.0
 offset_top = 500.0
 offset_right = 618.0
@@ -93,6 +96,7 @@ text = "
 >"
 
 [node name="BackButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 312.0
 offset_top = 624.0
 offset_right = 440.0

@@ -13,11 +13,12 @@ script = ExtResource("1_bvexg")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 256.0
+offset_left = 248.0
 offset_top = 96.0
-offset_right = 421.0
+offset_right = 417.0
 offset_bottom = 122.0
 text = "Number of cat faces: "
+horizontal_alignment = 2
 
 [node name="CatFaceNumTextEdit" type="TextEdit" parent="."]
 layout_mode = 0
@@ -35,11 +36,30 @@ offset_bottom = 240.0
 text = "Apply & Back"
 
 [node name="BackButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 320.0
 offset_top = 256.0
 offset_right = 432.0
 offset_bottom = 288.0
 text = "Back"
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 144.0
+offset_right = 416.0
+offset_bottom = 170.0
+text = "Difficulty:"
+horizontal_alignment = 2
+
+[node name="DifficultyDropDown" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 136.0
+offset_right = 492.0
+offset_bottom = 173.0
+alignment = 1
+
 [connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="item_selected" from="DifficultyDropDown" to="." method="_on_difficulty_drop_down_item_selected"]
