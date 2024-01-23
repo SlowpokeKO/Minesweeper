@@ -46,6 +46,8 @@ func _ready():
 func new_game():
 	clear()
 	mine_coords.clear()
+	for child in get_parent().get_node("MineControl").get_children():
+		child.queue_free()
 	generate_mines()
 	generate_numbers()
 	generate_grass()
@@ -119,6 +121,7 @@ func _input(event):
 					if is_mine(map_pos):
 						lostGame.emit()
 						end_screen = true
+						return
 					
 					process_left_click(map_pos)
 			
@@ -143,6 +146,8 @@ func process_left_click(pos):
 			#remove processed cell from array
 			cells_to_reveal.erase(cells_to_reveal[0])
 			tiles_left -= 1
+			
+			#winning
 			if tiles_left <= 0:
 				wonGame.emit()
 				
@@ -162,12 +167,9 @@ func process_left_click(pos):
 					mines.sort_custom(sort_height)
 					print(mines)
 					for i in mines:
-						
-						#mines[i]
-						
 						var falling_mine = preload("res://falling_mine.tscn").instantiate()
 						falling_mine.position = i * 50 + Vector2i(25, 25)
-						add_child(falling_mine)
+						get_parent().get_node("MineControl").add_child(falling_mine)
 						erase_cell(mine_layer, i)
 						await get_tree().create_timer(.5).timeout
 		else:
